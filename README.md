@@ -1,6 +1,5 @@
 # vimrc
-personal vimrc file
-for use with Win, Linux and RPi
+personal vimrc file for use with Win, Linux and RPi
 
 # Vundle Install Instructions
 For Vundle Install Instructions https://github.com/VundleVim/Vundle.vim
