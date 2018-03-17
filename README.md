@@ -6,20 +6,20 @@ for use with Win, Linux and RPi
 For Vundle Install Instructions https://github.com/VundleVim/Vundle.vim
 
 ## Linux Install
-clone Vundle.vim into vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-use personal vimrc file that initializes Vundle and have plugins, place it here:
-[destination]: /etc/vim/vimrc
-for example: sudo mv home/pi/foldername/vimrc /etc/vim/vimrc
-Make sure rtp is correct in vimrc
-Launch vim and run :PluginInstall
-or Install Vim Plugins from Command Line
-vim +PluginInstall +qall
+1. clone Vundle.vim into vim
+2. git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+3. use personal vimrc file that initializes Vundle and have plugins, place it here:
+4. destination: /etc/vim/vimrc
+5. for example: sudo mv home/pi/foldername/vimrc /etc/vim/vimrc
+6. Make sure rtp is correct in vimrc
+7. Launch vim and run :PluginInstall
+8. or Install Vim Plugins from Command Line
+9. vim +PluginInstall +qall
 
 ## Windows gVimPortable
-Place GVimPortable in C:/
-Install Vundle using git into c:/gVimPortable/data/settings/.vim/
-(so path will be c:/gVimPortable/data/settings/.vim/bundle/all_packages)
-Run as administrator
-Make sure rtp is correct in vimrc
-Run :PluginInstall in Vim
+1. Place GVimPortable in C:/
+2. Install Vundle using git into c:/gVimPortable/data/settings/.vim/
+3. path will be c:/gVimPortable/data/settings/.vim/bundle/all_packages
+4. Run as administrator
+5. Make sure rtp is correct in vimrc
+6. Run :PluginInstall in Vim
