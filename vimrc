@@ -1,7 +1,7 @@
 " SRO vimrc file
 " Set OS Defaults {{{
 if has("win32")
-    cd C:\Users\lindemann.ma\Documents\gvim\ 
+    cd C:\Users\srosendal\Documents\gvim\ 
 else
     if has("unix")
         runtime! debian.vim
