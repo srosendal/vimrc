@@ -210,6 +210,11 @@ nnoremap <silent> <leader>= <C-W>=
 nnoremap <space> za         " Folding with spacebar
 nnoremap K i<CR><Esc>       " Split two lines
 
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+imap <C-BS> <C-W>
+" Map Ctrl-Delete to delete the next word in insert mode.
+inoremap <C-Del> <C-o>dE
+
 " Copy Paste to System clipboard with <Leader>p and <Leader>y
 vmap <leader>y "+y
 nmap <leader>p "+gP
