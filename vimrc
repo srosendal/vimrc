@@ -167,6 +167,10 @@ let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 let mapleader = ","
 let maplocalleader = "-"
 
+" use jj or jk as Escape
+inoremap jj <Esc>
+inoremap jk <Esc>
+
 nnoremap <leader>ev :sp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>si :pwd<CR> " Show current path
