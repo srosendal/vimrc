@@ -40,6 +40,9 @@ endif
         autocmd GUIEnter * set vb t_vb=
         autocmd VimEnter * set vb t_vb=
     endif
+    
+    " Maximize Window
+    au GUIEnter * simalt ~x
 " }}}
 " Colorscheme {{{
     set t_Co=256                    " Set colors
