@@ -174,6 +174,10 @@ let maplocalleader = "-"
 inoremap jj <Esc>
 inoremap jk <Esc>
 
+"Delete line above or under cursor
+nnoremap <leader>d :-d<CR>
+nnoremap <leader>D :+d<CR>
+
 nnoremap <leader>ev :sp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>si :pwd<CR> " Show current path
