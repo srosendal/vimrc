@@ -170,9 +170,12 @@ let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 let mapleader = ","
 let maplocalleader = "-"
 
-" use jj or jk as Escape
+" Use jj or jk as Escape
 inoremap jj <Esc>
 inoremap jk <Esc>
+
+" Navigate to Center of Line
+map gm :call cursor(0, virtcol('$')/2)<CR>
 
 "Delete line above or under cursor
 nnoremap <leader>d :-d<CR>
