@@ -197,6 +197,9 @@ nnoremap d+ d$
 nnoremap 9 ^
 nnoremap d9 d^
 
+" Replace visually marked text using Ctr-R
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 nnoremap <leader>sr "=strftime("%Y/%m/%d %H:%M:%S")<CR>P
 inoremap <leader>sr <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 nnoremap <leader>sd "=strftime("%Y/%m/%d")<CR>P
