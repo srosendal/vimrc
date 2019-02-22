@@ -246,26 +246,33 @@ map <leader>m :NERDTreeToggle<CR>
 " Open Windows File explorer in external native window
 nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
 
+" Run Code based on Filetype
+au BufEnter *.py map <silent> <F1> :!clear <CR> <esc>:w\|!python3 %<CR>
+au BufEnter *.py map <leader>æ :!clear <CR> <esc>:w\|!python3 %<CR>
+au BufEnter *.py map <leader>ø :!clear <CR> <esc>:w\|!python3 -i %<CR>
+au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
+au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
+
 " Compile Latex Document to pdf
-nnoremap <silent> <F1> :!start cmd /c pdflatex %<CR>
+nnoremap <silent> <F2> :!start cmd /c pdflatex %<CR>
 " Compile Latex Document to Markdown
-nnoremap <silent> <F2> :!start cmd /c pandoc -s % -o %:r.md<CR>
+nnoremap <silent> <F3> :!start cmd /c pandoc -s % -o %:r.md<CR>
 " Create Markdown file then compile this file to pdf
-nnoremap <silent> <F3> :!start cmd /c pandoc -s % -o %:r_md.md<CR> :!start cmd /c pandoc -s -V geometry:margin=1in -o %:r_md.pdf %:r_md.md<CR> " Compile Latex Document to Markdown
+nnoremap <silent> <F4> :!start cmd /c pandoc -s % -o %:r_md.md<CR> :!start cmd /c pandoc -s -V geometry:margin=1in -o %:r_md.pdf %:r_md.md<CR> " Compile Latex Document to Markdown
 " Compile Latex Document to docx
-nnoremap <silent> <F4> :!start cmd /c pandoc -s % -o %:r.docx<CR>
+nnoremap <silent> <F5> :!start cmd /c pandoc -s % -o %:r.docx<CR>
 " Run Python Code Inside VIM
-nnoremap <silent> <F5> :!python %<CR>
+nnoremap <silent> <F6> :!python %<CR>
 " Compile Markdown to pdf
-nnoremap <silent> <F6> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
-" Press F7 to toggle highlighting on/off, and show current value.
-:noremap <F7> :set hlsearch! hlsearch?<CR>
+nnoremap <silent> <F7> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+" Press F8 to toggle highlighting on/off, and show current value.
+:noremap <F8> :set hlsearch! hlsearch?<CR>
 
 " Arduino Inotool keymappings, linux only
 if has("unix")
     nnoremap <silent> <leader>io :cd %:p:h<CR> :cd ..<CR> :!ino build<CR>
     nnoremap <silent> <leader>iu :cd %:p:h<CR> :cd ..<CR> :!ino upload<CR>
     nnoremap <silent> <leader>ip :cd %:p:h<CR> :cd ..<CR> :!ino serial<CR>
-    nnoremap <silent> <F8> :cd %:p:h<CR> :cd ..<CR> :!ino build<CR> :!ino upload<CR> :!ino serial<CR>
+    nnoremap <silent> <F9> :cd %:p:h<CR> :cd ..<CR> :!ino build<CR> :!ino upload<CR> :!ino serial<CR>
 endif
 "}}}
