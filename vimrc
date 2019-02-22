@@ -243,30 +243,33 @@ nnoremap <silent> <leader>n :set relativenumber!<cr>
 
 " leader m to open/close NERDTree
 map <leader>m :NERDTreeToggle<CR>
-" Open Windows File explorer in external native window
-nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
 
-" Run Code based on Filetype
-au BufEnter *.py map <silent> <F1> :!clear <CR> <esc>:w\|!python3 %<CR>
-au BufEnter *.py map <leader>æ :!clear <CR> <esc>:w\|!python3 %<CR>
-au BufEnter *.py map <leader>ø :!clear <CR> <esc>:w\|!python3 -i %<CR>
-au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
-au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
-
-" Compile Latex Document to pdf
-nnoremap <silent> <F2> :!start cmd /c pdflatex %<CR>
-" Compile Latex Document to Markdown
-nnoremap <silent> <F3> :!start cmd /c pandoc -s % -o %:r.md<CR>
-" Create Markdown file then compile this file to pdf
-nnoremap <silent> <F4> :!start cmd /c pandoc -s % -o %:r_md.md<CR> :!start cmd /c pandoc -s -V geometry:margin=1in -o %:r_md.pdf %:r_md.md<CR> " Compile Latex Document to Markdown
-" Compile Latex Document to docx
-nnoremap <silent> <F5> :!start cmd /c pandoc -s % -o %:r.docx<CR>
+" Toggle highlighting on/off, and show current value.
+:noremap <F7> :set hlsearch! hlsearch?<CR>
 " Run Python Code Inside VIM
-nnoremap <silent> <F6> :!python %<CR>
-" Compile Markdown to pdf
-nnoremap <silent> <F7> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
-" Press F8 to toggle highlighting on/off, and show current value.
-:noremap <F8> :set hlsearch! hlsearch?<CR>
+nnoremap <silent> <F8> :!python %<CR>
+
+" Run Code based OS and on Filetype
+if has("win32")
+    " Compile Latex Document to pdf
+    au BufEnter *.tex map <silent> <F1> :!start cmd /c pdflatex %<CR>
+    au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
+    " Compile Markdown to pdf
+    au BufEnter *.tex map <silent> <F2> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+    au BufEnter *.tex map <leader>ø :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+    " Open Windows File explorer in external native window
+nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
+else
+    if has("unix")
+    " Run Python Code
+    au BufEnter *.py map <silent> <F1> :!clear <CR> <esc>:w\|!python3 %<CR>
+    au BufEnter *.py map <leader>æ :!clear <CR> <esc>:w\|!python3 %<CR>
+    au BufEnter *.py map <leader>ø :!clear <CR> <esc>:w\|!python3 -i %<CR>
+    " Compile Latex Document to pdf
+    au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
+    au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
+    endif
+endif
 
 " Arduino Inotool keymappings, linux only
 if has("unix")
