@@ -258,7 +258,7 @@ if has("win32")
     au BufEnter *.tex map <silent> <F2> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
     au BufEnter *.tex map <leader>ø :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
     " Open Windows File explorer in external native window
-nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
+    nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
 else
     if has("unix")
     " Run Python Code
