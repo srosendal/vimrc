@@ -221,6 +221,7 @@ nnoremap <leader>k <C-W>K   " leader-l move window to the split above
 nnoremap <leader>l <C-W>L   " leader-l move window to the split to the right
 nnoremap <leader>h <C-W>H   " leader-h move window to the split to the left
 
+nnoremap <silent> <leader>o :only <CR>
 nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <leader>= <C-W>=
