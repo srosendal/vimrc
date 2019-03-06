@@ -247,17 +247,20 @@ map <leader>m :NERDTreeToggle<CR>
 
 " Toggle highlighting on/off, and show current value.
 :noremap <F7> :set hlsearch! hlsearch?<CR>
-" Run Python Code Inside VIM
-nnoremap <silent> <F8> :!python %<CR>
 
 " Run Code based OS and on Filetype
 if has("win32")
+    " Run Python Code
+    au BufEnter *.py map <silent> <F1> <esc>:w\|!python %<CR>
+    au BufEnter *.py map <leader>æ <esc>:w\|!python3 %<CR>
+    au BufEnter *.py map <leader>ø <esc>:w\|!python3 -i %<CR>
+    au BufEnter *.py vmap <leader>' :'<,'> !python3 <CR>
     " Compile Latex Document to pdf
-    au BufEnter *.tex map <silent> <F1> :!start cmd /c pdflatex %<CR>
-    au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
+    au BufEnter *.tex map <silent> <F1> <esc>:w\|!start cmd /c pdflatex %<CR>
+    au BufEnter *.tex map <leader>æ <esc>:w\|!start cmd /c pdflatex %<CR>
     " Compile Markdown to pdf
-    au BufEnter *.tex map <silent> <F2> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
-    au BufEnter *.tex map <leader>ø :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+    au BufEnter *.tex map <silent> <F2> <esc>:w\|!start cmd /c pandoc -s -V -o %:r.pdf %:r.md<CR>
+    au BufEnter *.tex map <leader>ø <esc>:w\|!start cmd /c pandoc -s -V -o %:r.pdf %:r.md<CR>
     " Open Windows File explorer in external native window
     nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
 else
@@ -269,14 +272,10 @@ else
     " Compile Latex Document to pdf
     au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
-    endif
-endif
-
-" Arduino Inotool keymappings, linux only
-if has("unix")
+    " Arduino Inotool keymappings, linux only
     nnoremap <silent> <leader>io :cd %:p:h<CR> :cd ..<CR> :!ino build<CR>
     nnoremap <silent> <leader>iu :cd %:p:h<CR> :cd ..<CR> :!ino upload<CR>
     nnoremap <silent> <leader>ip :cd %:p:h<CR> :cd ..<CR> :!ino serial<CR>
     nnoremap <silent> <F9> :cd %:p:h<CR> :cd ..<CR> :!ino build<CR> :!ino upload<CR> :!ino serial<CR>
+    endif
 endif
-"}}}
