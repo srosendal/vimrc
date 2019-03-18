@@ -256,6 +256,9 @@ if has("win32")
     au BufEnter *.py map <leader>æ <esc>:w\|!python3 %<CR>
     au BufEnter *.py map <leader>ø <esc>:w\|!python3 -i %<CR>
     au BufEnter *.py vmap <leader>' :'<,'> !python3 <CR>
+    " Make C or CPP Code
+    au BufEnter *.c, *.cpp imap <silent> <F1> <esc>:w\|!make %<CR>
+    au BufEnter *.c, *.cpp imap <leader>æ <esc>:w\|!make %<CR>
     " Compile Latex Document to pdf
     au BufEnter *.tex map <silent> <F1> <esc>:w\|!start cmd /c pdflatex %<CR>
     au BufEnter *.tex map <leader>æ <esc>:w\|!start cmd /c pdflatex %<CR>
