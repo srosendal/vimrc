@@ -54,6 +54,7 @@ endif
 " Line Limits and Breaks {{{
     set textwidth=79		    " Line wrap (number of cols)
     set colorcolumn=80          " Set Red Line Marker
+    set formatoptions+=a        " Dynamically resize lines to fit
     set linebreak	            " Break lines at word (requires Wrap lines)
     set showbreak=+++ 		    " Wrap-broken line prefix
 " }}}
