@@ -252,7 +252,7 @@ map <leader>m :NERDTreeToggle<CR>
 " Run Code based OS and on Filetype
 if has("win32")
     " Run Python Code
-    au BufEnter *.py map <silent> <F1> <esc>:w\|!python %<CR>
+    au BufEnter *.py map <leader>å <esc>:w\|!python %<CR>
     au BufEnter *.py map <leader>æ <esc>:w\|!python3 %<CR>
     au BufEnter *.py map <leader>ø <esc>:w\|!python3 -i %<CR>
     au BufEnter *.py vmap <leader>' :'<,'> !python3 <CR>
