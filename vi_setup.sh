@@ -30,7 +30,7 @@ git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 echo "Done !"
 
 # Or download just the vimrc file using wget
-# https://raw.githubusercontent.com/srosendal/vimrc/master/vimrc
+# wget https://raw.githubusercontent.com/srosendal/vimrc/master/vimrc
 
 echo "Cloning Vundle.vim into vim ..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
