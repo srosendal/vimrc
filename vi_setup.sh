@@ -22,7 +22,8 @@ sudo apt-get remove --auto-remove vim-tiny
 echo "Done !"
 
 echo "Install VIM"
-sudo apt-get install vim -y
+sudo apt install vim-gtk -y
+# sudo apt-get install vim -y
 echo "Done !"
 
 echo "Download personal vimrc repository into /home/pi/vimsettings/"
