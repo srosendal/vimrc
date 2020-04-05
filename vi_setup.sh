@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 1. Download this file using wget
-# https://raw.githubusercontent.com/srosendal/vimrc/master/vi_setup.sh
+# 1. Clone this repository using
+# git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 
-# 2. Make sure all paths in this file is correct, ie. /home/pi/ <-
+# 2. Make sure all paths in this file are correct, ie. /home/pi/ <-
 # Also that paths in the donwloaded vimrc are correct, for Vundle: rtp
 
 # 3. Make sure this file is executable with: chmod u+x vi_setup.sh
@@ -12,9 +12,9 @@
 
 # 5. Run VI
 
-echo "*************************"
-echo "SetUp Settings for VI ..."
-echo "*************************"
+echo "*******************************"
+echo " Create New Settings for VI ..."
+echo "*******************************"
 date
 
 echo "Remove Vim-Tiny"
@@ -42,7 +42,7 @@ echo "Done !"
 
 #For Ubuntu: sudo mv /home/sro/etc/vim/vimrc/vimrc /usr/share/vim/vimfiles/vimrc
 
-# Manually Make sure rtp is correct in vimrc, for Ubuntu: set
+# Make sure rtp is correct in vimrc, for Ubuntu, set rtp to:
 # rtp+=~/.vim/bundle/Vundle.vim
 
 echo "Install Plugins"
