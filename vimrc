@@ -195,8 +195,8 @@ nnoremap ' `
 nnoremap + $
 nnoremap d+ d$
 " Use 9 to jump to first non-blank character
-nnoremap 9 ^
-nnoremap d9 d^
+" nnoremap 9 ^
+" nnoremap d9 d^
 
 " Replace visually marked text using Ctr-R
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
