@@ -1,16 +1,18 @@
 #!/bin/bash
 
-# 1. Clone this repository using
+# 1. Clone this repository using the right path, for example
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
+# git clone https://github.com/srosendal/vimrc.git /home/ubuntu/vimsettings/
 
 # 2. Make sure all paths in this file are correct, ie. /home/pi/ <-
-# Also that paths in the donwloaded vimrc are correct, for Vundle: rtp
 
-# 3. Make sure this file is executable with: chmod u+x vi_setup.sh
+# 3. Make sure all paths in vimrc are correct for Vundle plugin path: rtp
 
-# 4. Run this file with ./vi_setup.sh
+# 4. Make sure this file is executable with: chmod u+x vi_setup.sh
 
-# 5. Run VI
+# 5. Run this file with ./vi_setup.sh
+
+# 6. Run VI
 
 echo "*******************************"
 echo " Create New Settings for VI ..."
@@ -19,6 +21,10 @@ date
 
 echo "Remove Vim-Tiny"
 sudo apt-get remove --auto-remove vim-tiny
+echo "Done !"
+
+echo "Remove Vim-Tiny"
+sudo apt-get remove --auto-remove vim
 echo "Done !"
 
 echo "Install VIM"
