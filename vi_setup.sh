@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# 1. Clone this repository using the right path, for example
+# 1. Clone this repository. Make sure the path is correct, for example:
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 # git clone https://github.com/srosendal/vimrc.git /home/ubuntu/vimsettings/
 
-# 2. Make sure all paths in this file are correct, ie. /home/pi/ <-
+# 2. Make sure all paths in this ./vi_setup.sh file are correct, ie. /home/pi/ <-
 
 # 3. Make sure all paths in vimrc are correct for Vundle plugin path: rtp
 
@@ -27,7 +27,7 @@ echo "Remove Vim-Tiny"
 sudo apt-get remove --auto-remove vim
 echo "Done !"
 
-echo "Install VIM"
+echo "Re-Install VIM"
 sudo apt install vim-gtk -y
 # sudo apt-get install vim -y
 echo "Done !"
@@ -47,15 +47,15 @@ echo "Replacing original vimrc with personal vimrc"
 sudo mv /home/pi/vimsettings/vimrc /etc/vim/vimrc
 echo "Done !"
 
-#For Ubuntu: sudo mv /home/sro/etc/vim/vimrc/vimrc /usr/share/vim/vimfiles/vimrc
+# Alternatively, for Ubuntu: sudo mv /home/sro/etc/vim/vimrc/vimrc /usr/share/vim/vimfiles/vimrc
 
 # Make sure rtp is correct in vimrc, for Ubuntu, set rtp to:
 # rtp+=~/.vim/bundle/Vundle.vim
 
-echo "Install Plugins"
+echo "Installing Plugins"
 vim +PluginInstall +qall
 echo "Done !"
 
-echo "Clean folders"
+echo "Cleaning folders"
 sudo rm -rf /home/pi/vimsettings
 echo "All Done !"
