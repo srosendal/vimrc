@@ -184,13 +184,13 @@ inoremap ¨ <Esc>
 " Navigate to Center of Line
 map gm :call cursor(0, virtcol('$')/2)<CR>
 
-" Apply macros, qq: record, q: stop recording, Q: apply
+" Apply macros, qq: record, q: stop recording, Å: apply
 nnoremap Å @q
 vnoremap Å :norm @q<cr>
 
 " Shift + direction to change tabs
-noremap <S-l> gt
-noremap <S-h> gT
+"noremap <S-l> gt
+"noremap <S-h> gT
 
 "Delete line above or under cursor
 nnoremap <leader>d :-d<CR>
