@@ -49,7 +49,8 @@ endif
     set t_Co=256                    " Set colors
     syntax on			    " Enable syntax highlighting
     set background=dark		    " If using dark background
-    colorscheme desert              " Set Color Scheme
+    " colorscheme desert              " Set Color Scheme
+    " -> set colorscheme after loaded in plugins
 " }}}
 " Line Limits and Breaks {{{
     set textwidth=79		    " Line wrap (number of cols)
@@ -133,6 +134,10 @@ call vundle#end()
 filetype plugin indent on
 " }}}
 " Plugin Settings {{{
+" Colorschemes {{{
+    colorscheme desert
+    "colorscheme nord
+" }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
     let g:startify_custom_indices = ['f', 'g', 'h']
