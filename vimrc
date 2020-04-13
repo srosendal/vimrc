@@ -178,8 +178,8 @@ inoremap ¨ <Esc>
 map gm :call cursor(0, virtcol('$')/2)<CR>
 
 " Apply macros, qq: record, q: stop recording, Q: apply
-nnoremap Q @q
-vnoremap Q :norm @q<cr>
+nnoremap Å @q
+vnoremap Å :norm @q<cr>
 
 " Shift + direction to change tabs
 noremap <S-l> gt
