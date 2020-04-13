@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # 1. Clone this repository. Make sure the path is correct, for example:
-git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
+# git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
+# Alternatives
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 # git clone https://github.com/srosendal/vimrc.git /home/ubuntu/vimsettings/
 
