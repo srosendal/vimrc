@@ -1,20 +1,17 @@
 #!/bin/bash
 
-# 1. Clone this repository. Make sure the path is correct, for example:
+# 1. Clone repository with:
 # git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
-# Alternatives
+
+# 2. Make file executable with: chmod u+x vi_setup.sh
+
+# 3. Run file with ./vi_setup.sh
+
+# Potential Corrections
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 # git clone https://github.com/srosendal/vimrc.git /home/ubuntu/vimsettings/
-
-# 2. Make sure all paths in this ./vi_setup.sh file are correct, ie. /home/pi/ <-
-
-# 3. Make sure all paths in vimrc are correct for Vundle plugin path: rtp
-
-# 4. Make sure this file is executable with: chmod u+x vi_setup.sh
-
-# 5. Run this file with ./vi_setup.sh
-
-# 6. Run VI
+# Make sure all paths in this ./vi_setup.sh file are correct, ie. /home/pi/ <-
+# Make sure all paths in vimrc are correct for Vundle plugin path: rtp
 
 echo "*******************************"
 echo " Create New Settings for VI ..."
@@ -40,9 +37,10 @@ sudo apt install vim-gtk -y
 # sudo apt-get install vim -y
 echo "Done !"
 
-echo "Download personal vimrc repository into ~/vimsettings/"
-git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
-echo "Done !"
+# Only necessary if only this file has been downloaded
+# echo "Download personal vimrc repository into ~/vimsettings/"
+# git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
+# echo "Done !"
 
 # Or download just the vimrc file using wget
 # wget https://raw.githubusercontent.com/srosendal/vimrc/master/vimrc
