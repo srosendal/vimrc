@@ -93,18 +93,16 @@ if has("win32")
     set rtp+=$HOME/.vim/bundle/Vundle.vim/
 else
     if has("unix")
-        set rtp+=/home/pi/.vim/bundle/Vundle.vim
+        set rtp+=~/.vim/bundle/Vundle.vim
+        " set rtp+=/home/pi/.vim/bundle/Vundle.vim
     endif
 endif
 " Vundle {{{
 call vundle#begin('$HOME/.vim/bundle/')
 Plugin 'gmarik/Vundle.vim' " Required
 
-" Plugin 'tomasr/molokai'
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'jnurmine/Zenburn'
-
 Plugin 'scrooloose/syntastic'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-surround'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'godlygeek/tabular'
@@ -126,11 +124,9 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'valloric/youcompleteme'
 
-" Plugin 'chrisbra/csv.vim'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'klen/python-mode'
 Plugin 'latex-box-team/latex-box'
-" Plugin 'gerw/vim-latex-suite'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 call vundle#end()
@@ -172,12 +168,22 @@ let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 let mapleader = ","
 let maplocalleader = "-"
 
-" Use jj or jk as Escape
+" Use alternatives as Escape
 inoremap jj <Esc>
 inoremap jk <Esc>
+noremap ´ <Esc>
+inoremap ¨ <Esc>
 
 " Navigate to Center of Line
 map gm :call cursor(0, virtcol('$')/2)<CR>
+
+" Apply macros, qq: record, q: stop recording, Q: apply
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
+
+" Shift + direction to change tabs
+noremap <S-l> gt
+noremap <S-h> gT
 
 "Delete line above or under cursor
 nnoremap <leader>d :-d<CR>
@@ -228,7 +234,7 @@ nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <leader>= <C-W>=
 
 nnoremap <space> za         " Folding with spacebar
-nnoremap K i<CR><Esc>       " Split two lines
+" nnoremap L i<CR><Esc>       " Split two lines
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 imap <C-BS> <C-W>
