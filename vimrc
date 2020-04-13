@@ -135,8 +135,10 @@ filetype plugin indent on
 " }}}
 " Plugin Settings {{{
 " Colorschemes {{{
-    colorscheme desert
+    "colorscheme desert
     "colorscheme nord
+    "colorscheme nordisk
+    colorscheme molokai
 " }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
