@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 1. Clone this repository. Make sure the path is correct, for example:
+git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
 # git clone https://github.com/srosendal/vimrc.git /home/ubuntu/vimsettings/
 
@@ -32,8 +33,8 @@ sudo apt install vim-gtk -y
 # sudo apt-get install vim -y
 echo "Done !"
 
-echo "Download personal vimrc repository into /home/pi/vimsettings/"
-git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
+echo "Download personal vimrc repository into ~/vimsettings/"
+git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
 echo "Done !"
 
 # Or download just the vimrc file using wget
@@ -44,7 +45,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "Done !"
 
 echo "Replacing original vimrc with personal vimrc"
-sudo mv /home/pi/vimsettings/vimrc /etc/vim/vimrc
+sudo mv ~/vimsettings/vimrc /etc/vim/vimrc
 echo "Done !"
 
 # Alternatively, for Ubuntu: sudo mv /home/sro/etc/vim/vimrc/vimrc /usr/share/vim/vimfiles/vimrc
@@ -57,5 +58,5 @@ vim +PluginInstall +qall
 echo "Done !"
 
 echo "Cleaning folders"
-sudo rm -rf /home/pi/vimsettings
+sudo rm -rf ~/vimsettings
 echo "All Done !"
