@@ -20,6 +20,12 @@ echo " Create New Settings for VI ..."
 echo "*******************************"
 date
 
+echo "updating ..."
+sudo apt-get update
+
+echo "upgrading ..."
+sudo apt-get upgrade -y
+
 echo "Remove Vim-Tiny"
 sudo apt-get remove --auto-remove vim-tiny
 echo "Done !"
