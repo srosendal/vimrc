@@ -29,7 +29,6 @@ endif
     set nrformats-=octal        " Exclude octal formats
     set autochdir               " Automatic sets directory to current file
     set mousemodel=extend       " Use the mouse to search for all words using shift-leftclick
-    set guifont=Consolas:h16    " Set font type and size
 
     if has("autocmd") " Vim jumps to the latest position, when reopening a file
         au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -49,12 +48,10 @@ endif
     set t_Co=256                    " Set colors
     syntax on			    " Enable syntax highlighting
     set background=dark		    " If using dark background
-    " colorscheme desert              " Set Color Scheme
-    " -> set colorscheme after loaded in plugins
+    "colorscheme desert              " Set Color Scheme
 " }}}
 " Line Limits and Breaks {{{
     set textwidth=79		    " Line wrap (number of cols)
-    set colorcolumn=80          " Set Red Line Marker
     set linebreak	            " Break lines at word (requires Wrap lines)
     set showbreak=+++ 		    " Wrap-broken line prefix
 " }}}
@@ -95,21 +92,27 @@ if has("win32")
 else
     if has("unix")
         set rtp+=~/.vim/bundle/Vundle.vim
-        " set rtp+=/home/pi/.vim/bundle/Vundle.vim
     endif
 endif
 " Vundle {{{
 call vundle#begin('$HOME/.vim/bundle/')
 Plugin 'gmarik/Vundle.vim' " Required
 
-Plugin 'scrooloose/syntastic'
-Plugin 'flazz/vim-colorschemes'
+" 'Integrated Performance' Plugins
 Plugin 'tpope/vim-surround'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-speeddating'
-Plugin 'townk/vim-autoclose'
+Plugin 'tmhedberg/simpylfold'
+"Plugin 'godlygeek/tabular'
+"Plugin 'townk/vim-autoclose'
 
+" Appearance/Visual Plugins
+Plugin 'flazz/vim-colorschemes'
+Plugin 'mechatroner/rainbow_csv'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'scrooloose/syntastic'
+
+" Add-on's Plugins
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'mhinz/vim-startify'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -117,28 +120,22 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ivalkeen/nerdtree-execute' "Note: no spaces allowed in full path of gVimPortable
-Plugin 'kien/ctrlp.vim'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-" Plugin 'sirver/ultisnips'
-" Plugin 'hlissner/vim-multiedit'
-" Plugin 'paradigm/vim-multicursor'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'valloric/youcompleteme'
+"Plugin 'kien/ctrlp.vim'
 
-Plugin 'mechatroner/rainbow_csv'
-Plugin 'klen/python-mode'
-Plugin 'latex-box-team/latex-box'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+" Box/Package Plugins
+"Plugin 'klen/python-mode'
+"Plugin 'latex-box-team/latex-box'
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
+
 call vundle#end()
 filetype plugin indent on
 " }}}
 " Plugin Settings {{{
-" Colorschemes {{{
-    "colorscheme desert
+" colorscheme {{{
     "colorscheme nord
-    "colorscheme nordisk
-    colorscheme molokai
+    colorscheme nordisk
+    "colorscheme molokai
 " }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
@@ -172,59 +169,36 @@ let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 " }}}
 "}}}
 " Key Mappings {{{
+" Fundamentals
 let mapleader = ","
 let maplocalleader = "-"
 
 " Use alternatives as Escape
 inoremap jj <Esc>
 inoremap jk <Esc>
-noremap ´ <Esc>
+inoremap ´ <Esc>
 inoremap ¨ <Esc>
 
-" Navigate to Center of Line
-map gm :call cursor(0, virtcol('$')/2)<CR>
-
-" Apply macros, qq: record, q: stop recording, Å: apply
-nnoremap Å @q
-vnoremap Å :norm @q<cr>
-
-" Shift + direction to change tabs
-"noremap <S-l> gt
-"noremap <S-h> gT
-
-"Delete line above or under cursor
-nnoremap <leader>d :-d<CR>
-nnoremap <leader>D :+d<CR>
-
-nnoremap <leader>ev :sp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>si :pwd<CR> " Show current path
-nnoremap <silent> <leader>sp :cd %:p:h<CR> " Set path for all windows to current file path
-nnoremap <silent> <leader>so :lcd %:p:h<CR> " Set path for current window to current file path
-
-" Use ' to jump to the exact mark location
-nnoremap ' `
-" Use + to jump to end of sentence
-nnoremap + $
-nnoremap d+ d$
-" Use 9 to jump to first non-blank character
-" nnoremap 9 ^
-" nnoremap d9 d^
-
-" Replace visually marked text using Ctr-R
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
-nnoremap <leader>sr "=strftime("%Y/%m/%d %H:%M:%S")<CR>P
-inoremap <leader>sr <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
-nnoremap <leader>sd "=strftime("%Y/%m/%d")<CR>P
-inoremap <leader>sd <C-R>=strftime("%Y/%m/%d")<CR>
-nnoremap <leader>st "=strftime("%H:%M:%S")<CR>P
-inoremap <leader>st <C-R>=strftime("%H:%M:%S")<CR>
-
+" Save and Quit
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>a :qall<CR>
 
+" Navigation
+" Use ' to jump to the exact mark location
+nnoremap ' `
+
+" Use + to jump to end of sentence
+nnoremap + $
+nnoremap d+ d$
+
+" Navigate to Center of Line
+map gm :call cursor(0, virtcol('$')/2)<CR>
+
+" Folding with spacebar
+nnoremap <space> za
+
+" Split Windows
 nnoremap <C-J> <C-W><C-J>   " Ctrl-j navigate to the split below
 nnoremap <C-K> <C-W><C-K>   " Ctrl-k navigate to the split below
 nnoremap <C-L> <C-W><C-L>   " Ctrl-l navigate to the split below
@@ -237,14 +211,38 @@ nnoremap <leader>h <C-W>H   " leader-h move window to the split to the left
 
 nnoremap <silent> <leader>o :only <CR>
 nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <leader>= <C-W>=
 
-nnoremap <space> za         " Folding with spacebar
-" nnoremap L i<CR><Esc>       " Split two lines
+" Toggle highlighting on/off, and show current value.
+:noremap <F7> :set hlsearch! hlsearch?<CR>
 
+" Editing
+" Apply macros, qq: record, q: stop recording, Q: apply
+nnoremap Å @q
+vnoremap Å :norm @q<cr>
+
+"Delete line above or under cursor
+nnoremap <leader>d :-d<CR>
+nnoremap <leader>D :+d<CR>
+
+" Short-Cuts
+" Show and Set Paths
+nnoremap <leader>si :pwd<CR> " Show current path
+nnoremap <silent> <leader>sp :cd %:p:h<CR> " Set path for all windows to current file path
+nnoremap <silent> <leader>so :lcd %:p:h<CR> " Set path for current window to current file path
+
+" vi settings
+nnoremap <leader>ev :e /etc/vim/vimrc<CR>
+
+" Replace visually marked text using Ctr-R
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Windows-Like Mappings
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 imap <C-BS> <C-W>
+
 " Map Ctrl-Delete to delete the next word in insert mode.
 inoremap <C-Del> <C-o>dE
 
@@ -253,33 +251,23 @@ vmap <leader>y "+y
 nmap <leader>p "+gP
 vmap <leader>x "+x
 
+" Plugin related KeyMappings
 " leader n to switch NumberToggleTrigger
 nnoremap <silent> <leader>n :set relativenumber!<cr>
 
 " leader m to open/close NERDTree
 map <leader>m :NERDTreeToggle<CR>
 
-" Toggle highlighting on/off, and show current value.
-:noremap <F7> :set hlsearch! hlsearch?<CR>
-
-" Run Code based OS and on Filetype
+" OS and File dependent Run Commands
 if has("win32")
-    " Run Python Code
-    au BufEnter *.py map <leader>å <esc>:w\|!python %<CR>
-    au BufEnter *.py map <leader>æ <esc>:w\|!python3 %<CR>
-    au BufEnter *.py map <leader>ø <esc>:w\|!python3 -i %<CR>
-    au BufEnter *.py vmap <leader>' :'<,'> !python3 <CR>
-    " Make C or CPP Code
-    au BufEnter *.c, *.cpp imap <silent> <F1> <esc>:w\|!make %<CR>
-    au BufEnter *.c, *.cpp imap <leader>æ <esc>:w\|!make %<CR>
-    " Compile Latex Document to pdf
-    au BufEnter *.tex map <silent> <F1> <esc>:w\|!start cmd /c pdflatex %<CR>
-    au BufEnter *.tex map <leader>æ <esc>:w\|!start cmd /c pdflatex %<CR>
-    " Compile Markdown to pdf
-    au BufEnter *.tex map <silent> <F2> <esc>:w\|!start cmd /c pandoc -s -V -o %:r.pdf %:r.md<CR>
-    au BufEnter *.tex map <leader>ø <esc>:w\|!start cmd /c pandoc -s -V -o %:r.pdf %:r.md<CR>
     " Open Windows File explorer in external native window
     nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
+    " Compile Latex Document to pdf
+    au BufEnter *.tex map <silent> <F1> :!start cmd /c pdflatex %<CR>
+    au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
+    " Compile Markdown to pdf
+    au BufEnter *.tex map <silent> <F2> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+    au BufEnter *.tex map <leader>ø :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
 else
     if has("unix")
     " Run Python Code
@@ -289,10 +277,14 @@ else
     " Compile Latex Document to pdf
     au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
-    " Arduino Inotool keymappings, linux only
-    nnoremap <silent> <leader>io :cd %:p:h<CR> :cd ..<CR> :!ino build<CR>
-    nnoremap <silent> <leader>iu :cd %:p:h<CR> :cd ..<CR> :!ino upload<CR>
-    nnoremap <silent> <leader>ip :cd %:p:h<CR> :cd ..<CR> :!ino serial<CR>
-    nnoremap <silent> <F9> :cd %:p:h<CR> :cd ..<CR> :!ino build<CR> :!ino upload<CR> :!ino serial<CR>
     endif
 endif
+
+"" Arduino Inotool keymappings; linux only
+"if has("unix")
+    "nnoremap <silent> <leader>io :cd %:p:h<CR> :cd ..<CR> :!ino build<CR>
+    "nnoremap <silent> <leader>iu :cd %:p:h<CR> :cd ..<CR> :!ino upload<CR>
+    "nnoremap <silent> <leader>ip :cd %:p:h<CR> :cd ..<CR> :!ino serial<CR>
+    "nnoremap <silent> <F9> :cd %:p:h<CR> :cd ..<CR> :!ino build<CR> :!ino upload<CR> :!ino serial<CR>
+"endif
+"}}}
