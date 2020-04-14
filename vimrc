@@ -151,20 +151,12 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeIgnore=['\.pyc$', '\~$']    " ignore files in NERDTree
 " }}}
 " Latex-box {{{
-let g:tex_flavor='latex'
-autocmd FileType tex set spell wrap linebreak
-let g:LatexBox_latexmk_async=1
-let g:LatexBox_latexmk_preview_continuously=1
-let g:LatexBox_quickfix=2
-let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
-" }}}
-" Vim-Latex Suite {{{
-" set shellslash
-" set grepprg=grep\ -nH\ $*
-" let g:tex_flavor='latex'
-" let g:Tex_DefaultTargetFormat='pdf'
-" let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode $*'
-" let g:Tex_ViewRule_pdf='C:\Program Files (x86)\SumatraPDF\SumatraPDF.exe'
+"let g:tex_flavor='latex'
+"autocmd FileType tex set spell wrap linebreak
+"let g:LatexBox_latexmk_async=1
+"let g:LatexBox_latexmk_preview_continuously=1
+"let g:LatexBox_quickfix=2
+"let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 " }}}
 " }}}
 "}}}
