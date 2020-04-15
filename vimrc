@@ -226,8 +226,14 @@ nnoremap <leader>si :pwd<CR> " Show current path
 nnoremap <silent> <leader>sp :cd %:p:h<CR> " Set path for all windows to current file path
 nnoremap <silent> <leader>so :lcd %:p:h<CR> " Set path for current window to current file path
 
-" vi settings
-nnoremap <leader>ev :e /etc/vim/vimrc<CR>
+" vimrc settings
+if has("win32")
+    nnoremap <leader>ev :sp $MYVIMRC<CR>
+else
+    if has("unix")
+        nnoremap <leader>ev :e /etc/vim/vimrc<CR>
+    endif
+endif
 
 " Replace visually marked text using Ctr-R
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
