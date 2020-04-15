@@ -29,6 +29,7 @@ endif
     set nrformats-=octal        " Exclude octal formats
     set autochdir               " Automatic sets directory to current file
     set mousemodel=extend       " Use the mouse to search for all words using shift-leftclick
+    set guifont=Consolas:h16    " Set font type and size, used for gVimPortable
 
     if has("autocmd") " Vim jumps to the latest position, when reopening a file
         au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
