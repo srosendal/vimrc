@@ -41,7 +41,7 @@ endif
         autocmd GUIEnter * set vb t_vb=
         autocmd VimEnter * set vb t_vb=
     endif
-    
+
     " Maximize Window
     au GUIEnter * simalt ~x
 " }}}
@@ -137,7 +137,8 @@ filetype plugin indent on
 " colorscheme {{{
     "colorscheme nord
     "colorscheme nordisk
-    colorscheme molokai
+    "colorscheme molokai
+    colorscheme elflord
 " }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
