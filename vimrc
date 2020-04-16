@@ -276,6 +276,7 @@ else
     " Compile Latex Document to pdf
     au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
+    au BufEnter *.md map <leader>æ <esc>:w\|!pandoc -V geometry:margin=3cm % -o %:r.pdf<CR>
     endif
 endif
 
