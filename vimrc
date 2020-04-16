@@ -135,8 +135,8 @@ filetype plugin indent on
 " Plugin Settings {{{
 " colorscheme {{{
     "colorscheme nord
-    colorscheme nordisk
-    "colorscheme molokai
+    "colorscheme nordisk
+    colorscheme molokai
 " }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
@@ -261,20 +261,15 @@ map <leader>m :NERDTreeToggle<CR>
 if has("win32")
     " Open Windows File explorer in external native window
     nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
-    " Compile Latex Document to pdf
-    au BufEnter *.tex map <silent> <F1> :!start cmd /c pdflatex %<CR>
+    " Compile tex/md to pdf
     au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
-    " Compile Markdown to pdf
-    au BufEnter *.tex map <silent> <F2> :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
-    au BufEnter *.tex map <leader>ø :!start cmd /c pandoc -s -V geometry:margin=1cm -o %:r.pdf %:r.md<CR>
+    au BufEnter *.md map <leader>æ :!start cmd /c pandoc -V geometry:margin=3cm -o %:r.pdf<CR>
 else
     if has("unix")
     " Run Python Code
-    au BufEnter *.py map <silent> <F1> :!clear <CR> <esc>:w\|!python3 %<CR>
     au BufEnter *.py map <leader>æ :!clear <CR> <esc>:w\|!python3 %<CR>
     au BufEnter *.py map <leader>ø :!clear <CR> <esc>:w\|!python3 -i %<CR>
-    " Compile Latex Document to pdf
-    au BufEnter *.tex map <silent> <F1> <esc>:w\|!pdflatex %<CR> <CR>
+    " Compile tex/md Document to pdf
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.md map <leader>æ <esc>:w\|!pandoc -V geometry:margin=3cm % -o %:r.pdf<CR>
     endif
