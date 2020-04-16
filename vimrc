@@ -102,8 +102,9 @@ Plugin 'gmarik/Vundle.vim' " Required
 " 'Integrated Performance' Plugins
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-repeat'
 Plugin 'tmhedberg/simpylfold'
-"Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 "Plugin 'townk/vim-autoclose'
 
 " Appearance/Visual Plugins
