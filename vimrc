@@ -183,9 +183,9 @@ nnoremap <leader>a :qall<CR>
 " Use ' to jump to the exact mark location
 nnoremap ' `
 
-" Use + to jump to end of sentence
-nnoremap + $
-nnoremap d+ d$
+"" Use + to jump to end of sentence
+"nnoremap + $
+"nnoremap d+ d$
 
 " Navigate to Center of Line
 map gm :call cursor(0, virtcol('$')/2)<CR>
