@@ -21,7 +21,6 @@ endif
     set visualbell              " Set Visual bell
     set t_vb=                   " Set the visual bell to empty (no flashing)
     set nostartofline           " Don't go to the first char of line (some movments)
-    set scrolloff=2             " Number of screen lines to keep above and below the cursor
     set laststatus=2            " Always displays status line, increase size
     set cmdheight=2             " Set command window height
     set confirm                 " Raise dialog to ask for save (instead of fail)
@@ -153,14 +152,6 @@ let g:airline_theme='kolor'
 " NERDTree {{{
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeIgnore=['\.pyc$', '\~$']    " ignore files in NERDTree
-" }}}
-" Latex-box {{{
-"let g:tex_flavor='latex'
-"autocmd FileType tex set spell wrap linebreak
-"let g:LatexBox_latexmk_async=1
-"let g:LatexBox_latexmk_preview_continuously=1
-"let g:LatexBox_quickfix=2
-"let g:LaTeXBox_output_type='' "Let latexmkrc choose the type "
 " }}}
 " }}}
 "}}}
