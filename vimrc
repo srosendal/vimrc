@@ -21,6 +21,7 @@ endif
     set visualbell              " Set Visual bell
     set t_vb=                   " Set the visual bell to empty (no flashing)
     set nostartofline           " Don't go to the first char of line (some movments)
+    set scrolloff=2             " Number of screen lines to keep above and below the cursor
     set laststatus=2            " Always displays status line, increase size
     set cmdheight=2             " Set command window height
     set confirm                 " Raise dialog to ask for save (instead of fail)
@@ -277,7 +278,7 @@ else
     " Compile tex/md Document to pdf
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.md map <leader>æ <esc>:w\|!pandoc -V geometry:margin=3cm % -o %:r.pdf<CR>
-    " Break all long lines
+    " Break all long lines in document
     au BufEnter *.tex map <leader>b <esc>:g/\%>79v/norm gww<CR><F7>
     endif
 endif
