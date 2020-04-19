@@ -271,6 +271,9 @@ else
     " Run Python Code
     au BufEnter *.py map <leader>æ :!clear <CR> <esc>:w\|!python3 %<CR>
     au BufEnter *.py map <leader>ø :!clear <CR> <esc>:w\|!python3 -i %<CR>
+    " Insert Breakpoint
+    au BufEnter *.py imap <leader>b <CR>import pdb; pdb.set_trace()
+    au BufEnter *.py map <leader>b oimport pdb; pdb.set_trace()<esc>
     " Compile tex/md Document to pdf
     au BufEnter *.tex map <leader>æ <esc>:w\|!pdflatex %<CR> <CR>
     au BufEnter *.md map <leader>æ <esc>:w\|!pandoc -V geometry:margin=3cm % -o %:r.pdf<CR>
