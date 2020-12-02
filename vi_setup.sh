@@ -28,7 +28,7 @@ echo "Remove Vim-Tiny"
 sudo apt-get remove --auto-remove vim-tiny
 echo "Done !"
 
-echo "Remove Vim-Tiny"
+echo "Remove Vim"
 sudo apt-get remove --auto-remove vim
 echo "Done !"
 
