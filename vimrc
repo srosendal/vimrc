@@ -255,6 +255,9 @@ map <leader>m :NERDTreeToggle<CR>
 if has("win32")
     " Open Windows File explorer in external native window
     nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
+    " Run Python Code
+    au BufEnter *.py map <leader>æ :!start cmd /c python3.9 %<CR>
+    au BufEnter *.py map <leader>ø :!start cmd /c python3.9 -i %<CR>
     " Compile tex/md to pdf
     au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
     au BufEnter *.md map <leader>æ :!start cmd /c pandoc -V geometry:margin=3cm -o %:r.pdf<CR>
