@@ -5,9 +5,10 @@
 # might need to install git with sudo apt install git
 
 # 2. Make file executable with: chmod u+x ~/vimsettings/vi_setup.sh
-# Alternatively navigate into cd ~/vimsettings/ where the vi_setup.sh is placed
+# Alternatively navigate into cd ~/vimsettings where the vi_setup.sh is placed
 
-# 3. Run file with ./vi_setup.sh
+# 3. Run file with ~/vimsettings/vi_setup.sh
+# Alternatively navigate ingo ~/vimsettings and run ./vi_setup.sh
 
 # Potential Corrections
 # git clone https://github.com/srosendal/vimrc.git /home/pi/vimsettings/
