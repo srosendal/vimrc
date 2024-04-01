@@ -1,6 +1,9 @@
 # vimrc
 personal vimrc file for use with Win, Linux and RPi
 
+# Complete Installation
+Read and follow the vi_setup.sh instructions for full instalation
+
 # Vundle Install Instructions
 For Vundle Install Instructions https://github.com/VundleVim/Vundle.vim
 
