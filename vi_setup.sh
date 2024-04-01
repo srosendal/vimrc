@@ -2,8 +2,10 @@
 
 # 1. Clone repository with:
 # git clone https://github.com/srosendal/vimrc.git ~/vimsettings/
+# might need to install git with sudo apt install git
 
-# 2. Make file executable with: chmod u+x vi_setup.sh
+# 2. Make file executable with: chmod u+x ~/vimsettings/vi_setup.sh
+# Alternatively navigate into cd ~/vimsettings/ where the vi_setup.sh is placed
 
 # 3. Run file with ./vi_setup.sh
 
