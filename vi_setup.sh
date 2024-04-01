@@ -38,6 +38,7 @@ echo "Done !"
 echo "Re-Install VIM"
 sudo apt install vim-gtk -y
 # sudo apt-get install vim -y
+# sudo apt-get install vim-athena
 echo "Done !"
 
 # Only necessary if only this file has been downloaded
