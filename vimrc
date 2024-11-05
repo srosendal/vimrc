@@ -244,6 +244,9 @@ vmap <leader>y "+y
 nmap <leader>p "+gP
 vmap <leader>x "+x
 
+" Select all, delete and copy paste in from System clipboard
+nmap <leader>å ggdG"+gP
+
 " Plugin related KeyMappings
 " leader n to switch NumberToggleTrigger
 nnoremap <silent> <leader>n :set relativenumber!<cr>
