@@ -202,8 +202,11 @@ nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <leader>= <C-W>=
 
+" Remove all trailing whitespace
+nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 " Toggle highlighting on/off, and show current value.
-:noremap <F7> :set hlsearch! hlsearch?<CR>
+noremap <F7> :set hlsearch! hlsearch?<CR>
 
 " Editing
 " Apply macros, qq: record, q: stop recording, Q: apply
