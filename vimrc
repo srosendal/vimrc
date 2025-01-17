@@ -1,7 +1,7 @@
 " SRO vimrc file
 " Set OS Defaults {{{
 if has("win32")
-    cd C:\Users\srosendal\Documents\gvim\ 
+    cd C:\Users\BKIR\OneDrive - Novo Nordisk\Documents\gvim
 else
     if has("unix")
         runtime! debian.vim
@@ -49,12 +49,12 @@ endif
     set t_Co=256                    " Set colors
     syntax on			    " Enable syntax highlighting
     set background=dark		    " If using dark background
-    "colorscheme desert              " Set Color Scheme
+    colorscheme desert              " Set Color Scheme
 " }}}
 " Line Limits and Breaks {{{
-    set textwidth=79		    " Line wrap (number of cols)
-    set linebreak	            " Break lines at word (requires Wrap lines)
-    set showbreak=+++ 		    " Wrap-broken line prefix
+    "set textwidth=79		    " Line wrap (number of cols)
+    "set linebreak	            " Break lines at word (requires Wrap lines)
+    "set showbreak=+++ 		    " Wrap-broken line prefix
 " }}}
 " Tabs and Indentation {{{
     set autoindent	            " Auto-indent new lines
@@ -65,8 +65,124 @@ endif
     set smarttab                    " Enable smart-tabs
 " }}}
 " Folding {{{
-    set foldmethod=marker       " Fold section by markers, not indentation
-    set foldlevel=0             " Close every fold by default
+    " Default folding settings
+    set foldlevel=99           " Don't fold by default when opening a file
+
+    " Set fold dash character globally
+    if !exists('&fillchars')
+        set fillchars=fold:-
+    else
+        set fillchars+=fold:-
+    endif
+
+    " Custom fold text
+    " This function creates a clean fold text display with the following format:
+    " Level 1 folds: '+---  N lines: text --------'
+    " Level 2 folds: '+---    +---  N lines: text --------'
+    " - Shows nested folds with double prefix for clear hierarchy
+    " - Includes line count for each fold
+    function! CustomFoldText()
+        " Get basic fold information
+        let lines_count = v:foldend - v:foldstart + 1
+        let lines_count_text = printf("%4d", lines_count)
+        let indent = indent(v:foldstart)
+        let width = winwidth(0)
+
+        " Initialize variables
+        let base_prefix = '+---'
+        let text_line = getline(v:foldstart)
+
+        " Clean the line text first
+        let text_line = substitute(text_line, '\s*$', '', '')        " Remove trailing whitespace
+        let text_line = substitute(text_line, '^\s*', '', '')        " Remove leading whitespace
+        let text_line = substitute(text_line, '\%x00', '', 'g')      " Remove null bytes
+        let text_line = substitute(text_line, '\n', '', 'g')         " Remove newlines
+        let text_line = substitute(text_line, '\r', '', 'g')         " Remove carriage returns
+
+        " Determine prefix based on fold level
+        if exists('b:class_indent') && indent > b:class_indent
+            let prefix = base_prefix . '    ' . base_prefix
+        else
+            let prefix = base_prefix
+        endif
+
+        " Construct the final fold text
+        let fold_text = prefix . ' ' . lines_count_text . ' lines: ' . text_line
+
+        " Clean the text
+        return substitute(fold_text, '[^[:print:][:space:]]', '', 'g')
+    endfunction
+
+    " Custom Python fold expression
+    " This creates a two-level folding hierarchy for Python files:
+    " Level 1:
+    " - Classes
+    " - Standalone functions (outside classes)
+    " - Import blocks
+    " Level 2:
+    " - Methods within classes
+    function! GetPythonFold(lnum)
+        let line = getline(a:lnum)
+        let indent = indent(a:lnum)
+
+        " Skip empty lines
+        if line =~ '^\s*$'
+            return '='
+        endif
+
+        " Start of import block
+        if line =~ '^import\s' || line =~ '^from\s.*import'
+            return 1
+        endif
+
+        " Class definitions start a fold at level 1
+        if line =~ '^\s*class\s'
+            let b:class_indent = indent
+            return ">1"
+        endif
+
+        " Check if we're inside a class definition by comparing indent
+        if exists('b:class_indent')
+            " Function definitions within class indent should be level 2
+            if line =~ '^\s*def\s' && indent > b:class_indent
+                return ">2"
+            endif
+            " Content within class methods
+            if indent > b:class_indent
+                return "2"
+            endif
+        endif
+
+        " Standalone functions (outside class) at level 1
+        if line =~ '^\s*def\s' && (!exists('b:class_indent') || indent <= b:class_indent)
+            return ">1"
+        endif
+
+        " Default case
+        return "="
+    endfunction
+
+    " File type specific folding settings
+    augroup folding_settings
+        autocmd!
+        " Vim files use marker folding
+        autocmd FileType vim setlocal foldmethod=marker
+        autocmd FileType vim setlocal foldlevel=0
+
+        " Python files use custom folding
+        autocmd FileType python setlocal foldmethod=expr
+        autocmd FileType python setlocal foldexpr=GetPythonFold(v:lnum)
+        autocmd FileType python setlocal foldtext=CustomFoldText()
+        autocmd FileType python setlocal foldnestmax=2
+        autocmd FileType python setlocal foldminlines=1
+        " Ensure fillchars doesn't get overridden
+        autocmd BufWinEnter *.py setlocal fillchars=fold:-
+        autocmd BufRead *.py setlocal fillchars=fold:-
+    augroup END
+
+    " Force marker folding for vimrc specifically
+    autocmd BufRead,BufNewFile *vimrc setlocal foldmethod=marker
+    autocmd BufRead,BufNewFile *vimrc setlocal foldlevel=0
 " }}}
 " Search {{{
     set hlsearch	            " Highlight all search results
@@ -97,6 +213,7 @@ else
 endif
 " Vundle {{{
 call vundle#begin('$HOME/.vim/bundle/')
+
 Plugin 'gmarik/Vundle.vim' " Required
 
 " 'Integrated Performance' Plugins
@@ -115,6 +232,8 @@ Plugin 'scrooloose/syntastic'
 
 " Add-on's Plugins
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+"Plugin 'Jeffrey-P-McAteer/vim-praktijk'
+"Plugin 'Jeffrey-P-McAteer/vim-hardtime'
 Plugin 'mhinz/vim-startify'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -138,7 +257,7 @@ filetype plugin indent on
     "colorscheme nord
     "colorscheme nordisk
     "colorscheme molokai
-    colorscheme elflord
+    "colorscheme elflord
 " }}}
 " Startify {{{
     let g:startify_custom_header=[strftime('%c')]
@@ -182,8 +301,12 @@ nnoremap ' `
 " Navigate to Center of Line
 map gm :call cursor(0, virtcol('$')/2)<CR>
 
-" Folding with spacebar
-nnoremap <space> za
+"" Folding with spacebar
+"nnoremap <space> za
+" Folding mappings
+nnoremap <space> za  " Toggle fold under cursor
+nnoremap <leader>fd zM  " Close all folds (mnemonic: fold down)
+nnoremap <leader>fg zR  " Open all folds (mnemonic: fold go/global)
 
 " Split Windows
 nnoremap <C-J> <C-W><C-J>   " Ctrl-j navigate to the split below
@@ -196,7 +319,7 @@ nnoremap <leader>k <C-W>K   " leader-l move window to the split above
 nnoremap <leader>l <C-W>L   " leader-l move window to the split to the right
 nnoremap <leader>h <C-W>H   " leader-h move window to the split to the left
 
-nnoremap <silent> <leader>o :only <CR>
+nnoremap <silent> <leader>wo :only <CR>
 nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -226,9 +349,11 @@ nnoremap <silent> <leader>so :lcd %:p:h<CR> " Set path for current window to cur
 " vimrc settings
 if has("win32")
     nnoremap <leader>ev :sp $MYVIMRC<CR>
+    nnoremap <leader>rv :source $MYVIMRC<CR>
 else
     if has("unix")
         nnoremap <leader>ev :e /etc/vim/vimrc<CR>
+        nnoremap <leader>rv :source /etc/vim/vimrc<CR>
     endif
 endif
 
@@ -242,17 +367,24 @@ imap <C-BS> <C-W>
 " Map Ctrl-Delete to delete the next word in insert mode.
 inoremap <C-Del> <C-o>dE
 
+" Indenting should include comments in for example python
+vmap > >gv=
+
 " Copy Paste to System clipboard with <Leader>p and <Leader>y
 vmap <leader>y "+y
 nmap <leader>p "+gP
+nmap <leader>å "+gP`[v`]
 vmap <leader>x "+x
 
 " Select all, delete and copy paste in from System clipboard
-nmap <leader>å ggdG"+gP
+nmap <leader>o ggdG"+gP
 
 " Plugin related KeyMappings
 " leader n to switch NumberToggleTrigger
 nnoremap <silent> <leader>n :set relativenumber!<cr>
+
+" Open Startify
+nnoremap <leader>s :Startify<CR>
 
 " leader m to open/close NERDTree
 map <leader>m :NERDTreeToggle<CR>
@@ -262,8 +394,9 @@ if has("win32")
     " Open Windows File explorer in external native window
     nnoremap <silent> <F10> :!start explorer /select,%:p<CR>
     " Run Python Code
-    au BufEnter *.py map <leader>æ :!start cmd /c python3.9 %<CR>
-    au BufEnter *.py map <leader>ø :!start cmd /c python3.9 -i %<CR>
+    au BufEnter *.py map <leader>æ :!start cmd /c python %<CR>
+    au BufEnter *.py map <leader>ø :!start cmd /c python -i %<CR>
+    au BufEnter *.py vmap <leader>å :w !python<CR>
     " Compile tex/md to pdf
     au BufEnter *.tex map <leader>æ :!start cmd /c pdflatex %<CR>
     au BufEnter *.md map <leader>æ :!start cmd /c pandoc -V geometry:margin=3cm -o %:r.pdf<CR>
