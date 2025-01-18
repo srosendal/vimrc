@@ -205,14 +205,14 @@ endif
 " }}}
 " Plugins {{{
 if has("win32")
-    set rtp+=$HOME/.vim/bundle/Vundle.vim/
+    set rtp+=C:\Vim\.vim\bundle\Vundle.vim
 else
     if has("unix")
         set rtp+=~/.vim/bundle/Vundle.vim
     endif
 endif
 " Vundle {{{
-call vundle#begin('$HOME/.vim/bundle/')
+call vundle#begin('C:\Vim\.vim\bundle')
 
 Plugin 'gmarik/Vundle.vim' " Required
 
@@ -229,11 +229,12 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'scrooloose/syntastic'
+Plugin 'junegunn/goyo.vim'
 
 " Add-on's Plugins
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 "Plugin 'Jeffrey-P-McAteer/vim-praktijk'
-"Plugin 'Jeffrey-P-McAteer/vim-hardtime'
+Plugin 'takac/vim-hardtime'
 Plugin 'mhinz/vim-startify'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -242,6 +243,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ivalkeen/nerdtree-execute' "Note: no spaces allowed in full path of gVimPortable
 "Plugin 'kien/ctrlp.vim'
+
+"" AI Plugins
+"Plugin 'madox2/vim-ai'
 
 " Box/Package Plugins
 "Plugin 'klen/python-mode'
@@ -271,6 +275,12 @@ let g:airline_theme='kolor'
 " NERDTree {{{
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeIgnore=['\.pyc$', '\~$']    " ignore files in NERDTree
+" }}}
+" Hardtime {{{
+    let g:hardtime_default_on = 0  " Don't enable by default
+    let g:hardtime_showmsg = 1     " Show messages when you do something inefficient
+    let g:hardtime_ignore_quickfix = 1  " Don't enforce in quickfix windows
+    let g:hardtime_maxcount = 3     " Allow 2 repeats before showing message
 " }}}
 " }}}
 "}}}
@@ -342,6 +352,7 @@ nnoremap <leader>D :+d<CR>
 
 " Short-Cuts
 " Show and Set Paths
+nnoremap <silent> <leader>su :lcd C:\Users\BKIR\Desktop<CR>:pwd<CR>
 nnoremap <leader>si :pwd<CR> " Show current path
 nnoremap <silent> <leader>sp :cd %:p:h<CR> " Set path for all windows to current file path
 nnoremap <silent> <leader>so :lcd %:p:h<CR> " Set path for current window to current file path
@@ -372,7 +383,10 @@ vmap > >gv=
 
 " Copy Paste to System clipboard with <Leader>p and <Leader>y
 vmap <leader>y "+y
-nmap <leader>p "+gP
+nmap <leader>p "+gp
+nmap <leader>P "+gP
+imap <leader>p <esc>"+gpi<esc>
+imap <leader>P <esc>"+gPi<esc>
 nmap <leader>å "+gP`[v`]
 vmap <leader>x "+x
 
@@ -387,7 +401,7 @@ nnoremap <silent> <leader>n :set relativenumber!<cr>
 nnoremap <leader>s :Startify<CR>
 
 " leader m to open/close NERDTree
-map <leader>m :NERDTreeToggle<CR>
+map <leader>m :if exists("b:NERDTree") <Bar> NERDTreeClose <Bar> else <Bar> NERDTree %:p:h <Bar> endif<CR>
 
 " OS and File dependent Run Commands
 if has("win32")
