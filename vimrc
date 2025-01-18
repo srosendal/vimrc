@@ -246,6 +246,7 @@ Plugin 'ivalkeen/nerdtree-execute' "Note: no spaces allowed in full path of gVim
 
 "" AI Plugins
 "Plugin 'madox2/vim-ai'
+Plugin 'pasky/claude.vim'
 
 " Box/Package Plugins
 "Plugin 'klen/python-mode'
@@ -281,6 +282,41 @@ let NERDTreeIgnore=['\.pyc$', '\~$']    " ignore files in NERDTree
     let g:hardtime_showmsg = 1     " Show messages when you do something inefficient
     let g:hardtime_ignore_quickfix = 1  " Don't enforce in quickfix windows
     let g:hardtime_maxcount = 3     " Allow 2 repeats before showing message
+" }}}
+" Claude {{{
+let g:claude_api_key = 'YOUR_API_KEY_HERE'
+let g:claude_map_implement = "<Leader>ci"
+let g:claude_map_open_chat = "<Leader>cc"
+let g:claude_map_send_chat_message = "<Leader>cj"
+let g:claude_map_cancel_response = "<Leader>cx"
+" }}}
+" ELinks (Not Vundle Plugin){{{
+" Set PATH for ELinks within Vim
+let $PATH .= ';C:\elinks-0.11.6\'
+
+" Set ELinks as the default browser for Vim
+let g:netrw_browsex_viewer = "elinks"
+
+" Existing ELinks setup
+let $PATH .= ';C:\elinks-0.11.6\'
+let g:netrw_browsex_viewer = "elinks"
+" Improved ELinks command
+command! -nargs=+ ELinks :call ELinksCommand(<q-args>)
+function! ELinksCommand(args)
+    let l:url = a:args
+    if a:args !~ '^https\?://'
+        let l:url = 'http://' . l:url
+    endif
+    execute '!C:\elinks-0.11.6\elinks.exe ' . shellescape(l:url)
+endfunction
+
+" New GoogleSearch command
+command! -nargs=+ GoogleSearch :call GoogleSearchCommand(<q-args>)
+function! GoogleSearchCommand(query)
+    let l:encoded_query = substitute(a:query, ' ', '+', 'g')
+    let l:url = 'https://www.google.com/search?q=' . l:encoded_query
+    execute '!C:\elinks-0.11.6\elinks.exe ' . shellescape(l:url)
+endfunction
 " }}}
 " }}}
 "}}}
