@@ -206,13 +206,15 @@ endif
 " Plugins {{{
 if has("win32")
     set rtp+=C:\Vim\.vim\bundle\Vundle.vim
+    " Vundle for Windows {{{
+    call vundle#begin('C:\Vim\.vim\bundle')
 else
     if has("unix")
         set rtp+=~/.vim/bundle/Vundle.vim
+        " Vundle for Unix systems {{{
+        call vundle#begin('~/.vim/bundle/Vundle.vim')
     endif
 endif
-" Vundle {{{
-call vundle#begin('C:\Vim\.vim\bundle')
 
 Plugin 'gmarik/Vundle.vim' " Required
 
